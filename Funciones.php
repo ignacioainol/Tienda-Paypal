@@ -23,4 +23,38 @@ class Funciones{
 
 		return 'true';
 	}
+
+	public function actualizarCarrito($cantidad, $producto_id, $session_id){
+		global $pdo;
+
+		$query = $pdo->prepare("UPDATE carrito
+								SET cantidad = :cantidad
+								WHERE producto_id = :producto_id AND sesion_id = :sesion_id");
+		
+		$query->execute([
+			'sesion_id' => $session_id,
+			'producto_id' => $producto_id,
+			'cantidad' => $cantidad
+		]);
+
+		return 'true';
+
+	}
+
+
+	public function obtenerCarrito($sesion_id){
+		global $pdo;
+		$query = $pdo->prepare("SELECT carrito.*, productos.* 
+								FROM carrito
+								INNER JOIN productos
+								ON carrito.producto_id = productos.producto_id
+								WHERE sesion_id = :sesion_id"
+							);
+
+		$query->execute([
+			'sesion_id' => $sesion_id
+		]);
+		return $query->fetchAll();
+	}
+
 }

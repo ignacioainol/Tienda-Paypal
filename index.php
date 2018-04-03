@@ -10,6 +10,7 @@
 	<meta charset="UTF-8">
 	<title>Carrito de Compras</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/main.css">
 
 </head>
 <body>
@@ -25,14 +26,14 @@
 	        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">Mi Carrito</a>
+	        <a class="nav-link" href="carrito.php">Mi Carrito</a>
 	      </li>
 	    </ul>
 	  </div>
 	</nav>
 	<!--[/NAVBAR]-->
 
-	<div class="container">
+	<div class="container mainContent">
 		<h2>Productos</h2>
 		<div class="row">
 		<? foreach ($productos as $index => $producto): ?>
