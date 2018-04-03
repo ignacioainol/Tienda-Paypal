@@ -30,7 +30,7 @@ class Funciones{
 		$query = $pdo->prepare("UPDATE carrito
 								SET cantidad = :cantidad
 								WHERE producto_id = :producto_id AND sesion_id = :sesion_id");
-		
+
 		$query->execute([
 			'sesion_id' => $session_id,
 			'producto_id' => $producto_id,
@@ -39,6 +39,21 @@ class Funciones{
 
 		return 'true';
 
+	}
+
+	public function eliminarProducto($producto_id,$session_id){
+		global $pdo;
+
+		$query = $pdo->prepare("DELETE FROM carrito
+								WHERE producto_id = :producto_id
+								AND sesion_id = :sesion_id");
+		$query->execute([
+			'producto_id' => $producto_id,
+			'sesion_id' => $session_id
+			
+		]);
+
+		return true;
 	}
 
 

@@ -44,6 +44,7 @@
 					<th>Nombre</th>
 					<th>Cantidad</th>
 					<th></th>
+					<th></th>
 					<th>Precio Unitario</th>
 					<th>Total</th>
 				</tr>
@@ -52,6 +53,7 @@
 						<td><?= $producto['nombre'] ?></td>
 						<td><input type="number" name="cantidad" value="<?= $producto['cantidad'] ?>" class="form-control" id="txtCambiarCantidad<?= $producto['producto_id'] ?>"></td>
 						<td><button class="btn btn-info btnCambiarCantidad" data-productoId="<?= $producto['producto_id'] ?>">Actualizar</button></td>
+						<td><button class="btn btn-danger btnEliminarProducto" data-productoId="<?= $producto['producto_id'] ?>">Eliminar</button></td>
 						<td><?= $producto['precio'] ?></td>
 						<td><?= $producto['cantidad'] * $producto['precio'] ?></td>
 					</tr>
@@ -59,6 +61,7 @@
 				<? endforeach ?>
 				<tr>
 					<th>Total</th>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -90,6 +93,27 @@
 						producto_id: producto_id
 					},
 					url: "actualizar_carrito.php",
+					success: function(data){
+						alert(data);
+						window.location.href="carrito.php";
+					},
+					error: function(e){
+						alert("Error...");
+					}
+				});
+			});
+
+			$(".btnEliminarProducto").on('click',function(){
+				var producto_id = $(this).attr('data-productoId');
+
+				console.log(producto_id);
+
+				$.ajax({
+					type: "POST",
+					data: {
+						producto_id: producto_id
+					},
+					url: "eliminar_producto.php",
 					success: function(data){
 						alert(data);
 						window.location.href="carrito.php";
